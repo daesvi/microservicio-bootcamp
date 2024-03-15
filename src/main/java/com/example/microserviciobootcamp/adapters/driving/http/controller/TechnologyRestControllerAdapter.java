@@ -6,11 +6,9 @@ import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnolog
 import com.example.microserviciobootcamp.adapters.driving.http.service.TechnologyHandlerImpl;
 import com.example.microserviciobootcamp.configuration.exceptionhandler.ExceptionResponse;
 import com.example.microserviciobootcamp.domain.api.ITechnologyServicePort;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

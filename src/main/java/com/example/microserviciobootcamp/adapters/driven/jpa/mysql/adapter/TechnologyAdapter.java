@@ -3,15 +3,11 @@ package com.example.microserviciobootcamp.adapters.driven.jpa.mysql.adapter;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.mapper.ITechnologyEntityMapper;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.repository.ITechnologyRepository;
-import com.example.microserviciobootcamp.domain.exception.EmptyFieldException;
-import com.example.microserviciobootcamp.domain.exception.FieldExceedsCharactersException;
 import com.example.microserviciobootcamp.domain.exception.TechnologyAlreadyExistsException;
 import com.example.microserviciobootcamp.domain.model.Technology;
 import com.example.microserviciobootcamp.domain.spi.ITechnologyPersistencePort;
-import com.example.microserviciobootcamp.domain.util.DomainConstants;
 import lombok.RequiredArgsConstructor;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Optional;
 
