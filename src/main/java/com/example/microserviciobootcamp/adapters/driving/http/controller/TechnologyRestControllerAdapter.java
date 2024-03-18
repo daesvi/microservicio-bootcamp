@@ -17,8 +17,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TechnologyRestControllerAdapter {
 
-    private final ITechnologyServicePort technologyServicePort;
-    private final ITechnologyResponseMapper technologyResponseMapper;
     private final TechnologyHandlerImpl technologyHandler;
 
     @PostMapping("/")
