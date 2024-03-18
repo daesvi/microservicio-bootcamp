@@ -1,7 +1,9 @@
 package com.example.microserviciobootcamp.adapters.driving.http.service;
 
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
+import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyRequestMapper;
+import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyResponseMapper;
 import com.example.microserviciobootcamp.domain.api.ITechnologyServicePort;
 import com.example.microserviciobootcamp.domain.exception.EmptyFieldException;
 import com.example.microserviciobootcamp.domain.exception.FieldExceedsCharactersException;
@@ -11,11 +13,14 @@ import com.example.microserviciobootcamp.domain.util.DomainConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class TechnologyHandlerImpl implements ITechnologyHandler {
 
     private final ITechnologyRequestMapper technologyRequestMapper;
+    private final ITechnologyResponseMapper technologyResponseMapper;
     private final ITechnologyServicePort technologyServicePort;
     private static final int MAX_NAME_LENGTH = 50;
     private static final int MAX_DESCRIPTION_LENGTH = 90;
@@ -26,6 +31,12 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
         validateTechnology(request);
         Technology technology = technologyRequestMapper.addRequestToTechnology(request);
         technologyServicePort.saveTechnology(technology);
+    }
+
+    @Override
+    public List<TechnologyResponse> getAllTechnologies(Integer page, Integer size, boolean ascending) {
+        List<Technology> listTechnologies = technologyServicePort.getAllTechnologies(page,size, ascending);
+        return technologyResponseMapper.toTechnologyResponseList(listTechnologies);
     }
 
     private void validateTechnology(AddTechnologyRequest request) {

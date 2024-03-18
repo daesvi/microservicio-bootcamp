@@ -9,5 +9,5 @@ public interface ITechnologyPersistencePort {
     void saveTechnology (Technology technology);
     Technology getTechnology(String name);
     Optional<Technology> findTechnologyByName (String name);
-    List<Technology> getAllTechnologies(Integer page, Integer size, Boolean ascending);
+    List<Technology> getAllTechnologies(Integer page, Integer size, boolean ascending);
 }
