@@ -1,7 +1,10 @@
 package com.example.microserviciobootcamp.adapters.driving.http.service;
 
+import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
+import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyRequestMapper;
+import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyResponseMapper;
 import com.example.microserviciobootcamp.domain.api.ITechnologyServicePort;
 import com.example.microserviciobootcamp.domain.exception.EmptyFieldException;
 import com.example.microserviciobootcamp.domain.exception.FieldExceedsCharactersException;
@@ -16,16 +19,18 @@ import org.springframework.stereotype.Service;
 public class TechnologyHandlerImpl implements ITechnologyHandler {
 
     private final ITechnologyRequestMapper technologyRequestMapper;
+    private final ITechnologyResponseMapper technologyResponseMapper;
     private final ITechnologyServicePort technologyServicePort;
     private static final int MAX_NAME_LENGTH = 50;
     private static final int MAX_DESCRIPTION_LENGTH = 90;
 
 
     @Override
-    public void saveTechnology(AddTechnologyRequest request) {
+    public TechnologyResponse saveTechnology(AddTechnologyRequest request) {
         validateTechnology(request);
         Technology technology = technologyRequestMapper.addRequestToTechnology(request);
-        technologyServicePort.saveTechnology(technology);
+        Technology savedTechnology = technologyServicePort.saveTechnology(technology);
+        return technologyResponseMapper.toTechnologyResponse(savedTechnology);
     }
 
     private void validateTechnology(AddTechnologyRequest request) {

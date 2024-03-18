@@ -16,11 +16,11 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     }
 
     @Override
-    public void saveTechnology(Technology technology) {
+    public Technology saveTechnology(Technology technology) {
         if (technologyPersistencePort.findTechnologyByName(technology.getName()).isPresent()){
             throw new TechnologyAlreadyExistsException(technology.getName());
         }
-        technologyPersistencePort.saveTechnology(technology);
+        return technologyPersistencePort.saveTechnology(technology);
     }
 
     @Override

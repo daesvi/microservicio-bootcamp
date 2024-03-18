@@ -20,14 +20,12 @@ import java.util.List;
 public class TechnologyRestControllerAdapter {
 
     private final ITechnologyServicePort technologyServicePort;
-    private final ITechnologyRequestMapper technologyRequestMapper;
     private final ITechnologyResponseMapper technologyResponseMapper;
     private final TechnologyHandlerImpl technologyHandler;
 
     @PostMapping("/")
-    public ResponseEntity<ExceptionResponse> addTechnology(@RequestBody AddTechnologyRequest request) {
-        technologyHandler.saveTechnology(request);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<TechnologyResponse> addTechnology(@RequestBody AddTechnologyRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(technologyHandler.saveTechnology(request));
     }
 
     @GetMapping

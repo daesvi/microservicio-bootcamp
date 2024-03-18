@@ -3,7 +3,6 @@ package com.example.microserviciobootcamp.adapters.driven.jpa.mysql.adapter;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.mapper.ITechnologyEntityMapper;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.repository.ITechnologyRepository;
-import com.example.microserviciobootcamp.domain.exception.TechnologyAlreadyExistsException;
 import com.example.microserviciobootcamp.domain.model.Technology;
 import com.example.microserviciobootcamp.domain.spi.ITechnologyPersistencePort;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +17,10 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyEntityMapper technologyEntityMapper;
 
     @Override
-    public void saveTechnology(Technology technology) {
-        if (technologyRepository.findByName(technology.getName()).isPresent()){
-            throw new TechnologyAlreadyExistsException(technology.getName());
-        }
+    public Technology saveTechnology(Technology technology) {
         TechnologyEntity technologyEntity = technologyEntityMapper.toEntity(technology);
-        technologyRepository.save(technologyEntity);
+         TechnologyEntity savedTechnology = technologyRepository.save(technologyEntity);
+        return technologyEntityMapper.toModel(savedTechnology);
     }
 
     @Override
