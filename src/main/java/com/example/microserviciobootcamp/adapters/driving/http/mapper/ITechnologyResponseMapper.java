@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ITechnologyResponseMapper {
     TechnologyResponse toTechnologyResponse (Technology technology);
-    List<TechnologyResponse> toProductResponseList(List<Technology> technologies);
+    List<TechnologyResponse> toTechnologyResponseList(List<Technology> technologies);
 }

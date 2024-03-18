@@ -1,5 +1,6 @@
 package com.example.microserviciobootcamp.configuration.exceptionhandler;
 
+import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.exception.NoDataFoundException;
 import com.example.microserviciobootcamp.configuration.Constants;
 import com.example.microserviciobootcamp.domain.exception.*;
 import com.example.microserviciobootcamp.domain.util.DomainConstants;
@@ -45,5 +46,11 @@ public class ControllerAdvisor {
     public ResponseEntity<ExceptionResponse> handleElementNotFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
                 Constants.ELEMENT_NOT_FOUND_EXCEPTION_MESSAGE, HttpStatus.CONFLICT.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(NoDataFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleNoDataFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
+                Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE, HttpStatus.NOT_FOUND.toString(), LocalDateTime.now()));
     }
 }
