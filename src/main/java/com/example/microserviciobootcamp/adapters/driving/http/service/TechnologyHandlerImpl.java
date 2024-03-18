@@ -38,12 +38,12 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
         }
         if (nameTechnology.isEmpty()) {
             throw new EmptyFieldException(DomainConstants.Field.NAME.toString());
-        }else if (nameTechnology.length()>50){
+        }else if (nameTechnology.length()>MAX_NAME_LENGTH){
             throw new FieldExceedsCharactersException(DomainConstants.Field.NAME.toString());
         }
         if (descriptionTechnology.isEmpty()){
             throw new EmptyFieldException(DomainConstants.Field.DESCRIPTION.toString());
-        } else if (descriptionTechnology.length()>90){
+        } else if (descriptionTechnology.length()>MAX_DESCRIPTION_LENGTH){
             throw new FieldExceedsCharactersException(DomainConstants.Field.DESCRIPTION.toString());
         }
     }
