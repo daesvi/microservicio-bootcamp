@@ -37,7 +37,7 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     }
 
     @Override
-    public List<Technology> getAllTechnologies(Integer page, Integer size) {
+    public List<Technology> getAllTechnologies(Integer page, Integer size, Boolean ascending) {
         return null;
     }
 }
