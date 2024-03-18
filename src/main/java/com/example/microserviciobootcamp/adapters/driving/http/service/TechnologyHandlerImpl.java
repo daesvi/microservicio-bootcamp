@@ -1,5 +1,6 @@
 package com.example.microserviciobootcamp.adapters.driving.http.service;
 
+import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyRequestMapper;
@@ -27,10 +28,11 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
 
 
     @Override
-    public void saveTechnology(AddTechnologyRequest request) {
+    public TechnologyResponse saveTechnology(AddTechnologyRequest request) {
         validateTechnology(request);
         Technology technology = technologyRequestMapper.addRequestToTechnology(request);
-        technologyServicePort.saveTechnology(technology);
+        Technology savedTechnology = technologyServicePort.saveTechnology(technology);
+        return technologyResponseMapper.toTechnologyResponse(savedTechnology);
     }
 
     @Override

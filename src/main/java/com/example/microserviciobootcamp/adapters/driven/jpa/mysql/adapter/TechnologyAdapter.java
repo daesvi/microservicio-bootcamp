@@ -21,9 +21,10 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyEntityMapper technologyEntityMapper;
 
     @Override
-    public void saveTechnology(Technology technology) {
+    public Technology saveTechnology(Technology technology) {
         TechnologyEntity technologyEntity = technologyEntityMapper.toEntity(technology);
-        technologyRepository.save(technologyEntity);
+         TechnologyEntity savedTechnology = technologyRepository.save(technologyEntity);
+        return technologyEntityMapper.toModel(savedTechnology);
     }
 
     @Override
