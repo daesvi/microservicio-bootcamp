@@ -14,6 +14,8 @@ import com.example.microserviciobootcamp.domain.util.DomainConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class TechnologyHandlerImpl implements ITechnologyHandler {
@@ -31,6 +33,12 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
         Technology technology = technologyRequestMapper.addRequestToTechnology(request);
         Technology savedTechnology = technologyServicePort.saveTechnology(technology);
         return technologyResponseMapper.toTechnologyResponse(savedTechnology);
+    }
+
+    @Override
+    public List<TechnologyResponse> getAllTechnologies(Integer page, Integer size, boolean ascending) {
+        List<Technology> listTechnologies = technologyServicePort.getAllTechnologies(page,size, ascending);
+        return technologyResponseMapper.toTechnologyResponseList(listTechnologies);
     }
 
     private void validateTechnology(AddTechnologyRequest request) {

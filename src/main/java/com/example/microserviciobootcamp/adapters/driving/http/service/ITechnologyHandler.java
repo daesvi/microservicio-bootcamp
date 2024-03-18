@@ -5,4 +5,5 @@ import com.example.microserviciobootcamp.adapters.driving.http.dto.response.Tech
 
 public interface ITechnologyHandler {
     TechnologyResponse saveTechnology(AddTechnologyRequest request);
+    List<TechnologyResponse> getAllTechnologies(Integer page, Integer size, boolean ascending);
 }
