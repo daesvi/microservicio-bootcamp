@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TechnologyUseCase implements ITechnologyServicePort {
 
-    private ITechnologyPersistencePort technologyPersistencePort;
+    private final ITechnologyPersistencePort technologyPersistencePort;
 
     public TechnologyUseCase(ITechnologyPersistencePort technologyPersistencePort){
         this.technologyPersistencePort = technologyPersistencePort;

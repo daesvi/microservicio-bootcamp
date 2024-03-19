@@ -1,6 +1,5 @@
 package com.example.microserviciobootcamp.domain.spi;
 
-import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.domain.model.Technology;
 
 import java.util.List;

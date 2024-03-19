@@ -1,6 +1,5 @@
 package com.example.microserviciobootcamp.adapters.driving.http.service;
 
-import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.entity.TechnologyEntity;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.mapper.ITechnologyRequestMapper;

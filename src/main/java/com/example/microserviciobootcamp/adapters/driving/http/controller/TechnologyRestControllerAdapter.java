@@ -3,7 +3,6 @@ package com.example.microserviciobootcamp.adapters.driving.http.controller;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.service.TechnologyHandlerImpl;
-import com.example.microserviciobootcamp.configuration.exceptionhandler.ExceptionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
