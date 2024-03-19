@@ -31,7 +31,7 @@ public class TechnologyRestControllerAdapter {
     }
 
     @GetMapping("/{technologyName}")
-    public ResponseEntity<TechnologyResponse> getProduct(@PathVariable String technologyName) {
+    public ResponseEntity<TechnologyResponse> getTechnology(@PathVariable String technologyName) {
         return ResponseEntity.ok(technologyHandler.getTechnology(technologyName));
     }
 }
