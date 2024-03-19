@@ -8,4 +8,5 @@ import java.util.List;
 public interface ITechnologyHandler {
     TechnologyResponse saveTechnology(AddTechnologyRequest request);
     List<TechnologyResponse> getAllTechnologies(Integer page, Integer size, boolean ascending);
+    TechnologyResponse getTechnology(String technologyName);
 }

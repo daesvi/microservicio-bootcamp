@@ -1,11 +1,13 @@
 package com.example.microserviciobootcamp.domain.api.usecase;
 
+import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.exception.NoDataFoundException;
 import com.example.microserviciobootcamp.domain.api.ITechnologyServicePort;
 import com.example.microserviciobootcamp.domain.exception.TechnologyAlreadyExistsException;
 import com.example.microserviciobootcamp.domain.model.Technology;
 import com.example.microserviciobootcamp.domain.spi.ITechnologyPersistencePort;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TechnologyUseCase implements ITechnologyServicePort {
 
@@ -24,8 +26,12 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     }
 
     @Override
-    public Technology getTechnology(String name) {
-        return technologyPersistencePort.getTechnology(name);
+    public Technology getTechnology(String technologyName) {
+        Optional<Technology> technology = technologyPersistencePort.findTechnologyByName(technologyName);
+        if (technology.isPresent()){
+            return technology.get();
+        }
+        throw new NoDataFoundException();
     }
 
     @Override

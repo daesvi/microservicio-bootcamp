@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -38,6 +39,12 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
     public List<TechnologyResponse> getAllTechnologies(Integer page, Integer size, boolean ascending) {
         List<Technology> listTechnologies = technologyServicePort.getAllTechnologies(page,size, ascending);
         return technologyResponseMapper.toTechnologyResponseList(listTechnologies);
+    }
+
+    @Override
+    public TechnologyResponse getTechnology(String technologyName) {
+        Technology technology = technologyServicePort.getTechnology(technologyName);
+        return technologyResponseMapper.toTechnologyResponse(technology);
     }
 
     private void validateTechnology(AddTechnologyRequest request) {

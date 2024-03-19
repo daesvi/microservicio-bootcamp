@@ -29,5 +29,10 @@ public class TechnologyRestControllerAdapter {
                                                                         @RequestParam (required = false) Optional<Boolean> ascending){
         return ResponseEntity.ok(technologyHandler.getAllTechnologies(page, size, ascending.orElse(false)));
     }
+
+    @GetMapping("/{technologyName}")
+    public ResponseEntity<TechnologyResponse> getProduct(@PathVariable String technologyName) {
+        return ResponseEntity.ok(technologyHandler.getTechnology(technologyName));
+    }
 }
 

@@ -28,11 +28,6 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
     }
 
     @Override
-    public Technology getTechnology(String name) {
-        return null;
-    }
-
-    @Override
     public Optional<Technology> findTechnologyByName(String name) {
         return technologyRepository.findByName(name).map(technologyEntityMapper::toModel);
     }
