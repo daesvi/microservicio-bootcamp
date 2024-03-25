@@ -27,26 +27,37 @@ public class AbilityUseCase implements IAbilityServicePort {
 
     @Override
     public Ability saveAbility(Ability ability) {
+        validateFields(ability);
+        isTechnologyRepeats(ability);
+        doesNotTechnologyExists(ability);
+
+        return abilityPersistencePort.saveAbility(ability);
+    }
+
+    private void validateFields (Ability ability){
         if (ability.getTechnologies().size() < DomainConstants.MIN_TECHNOLOGIES_SIZE){
             throw new MinimumDataFieldMissingException(DomainConstants.Field.TECHNOLOGY_IDS.toString());
         }
         if (ability.getTechnologies().size() > DomainConstants.MAX_TECHNOLOGIES_SIZE) {
             throw new FieldExceedsCharactersException(DomainConstants.Field.TECHNOLOGY_IDS.toString());
         }
+    }
+
+    private void isTechnologyRepeats (Ability ability){
         Set<Long> uniqueTechnologies = new HashSet<>();
         for (Technology technology : ability.getTechnologies()) {
             if (!uniqueTechnologies.add(technology.getId())) {
                 throw new TechnologyRepeatsItselfException();
             }
         }
+    }
 
+    private void doesNotTechnologyExists (Ability ability){
         for (Technology technology : ability.getTechnologies()) {
             if (!technologyPersistencePort.existsById(technology.getId())) {
                 throw new ElementNotFoundException(DomainConstants.Field.TECHNOLOGY_IDS.toString());
             }
         }
-
-        return abilityPersistencePort.saveAbility(ability);
     }
 
     @Override
