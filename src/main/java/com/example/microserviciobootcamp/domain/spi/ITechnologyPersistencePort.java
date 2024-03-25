@@ -9,4 +9,5 @@ public interface ITechnologyPersistencePort {
     Technology saveTechnology (Technology technology);
     Optional<Technology> findTechnologyByName (String name);
     List<Technology> getAllTechnologies(Integer page, Integer size, boolean ascending);
+    boolean existsById(Long id);
 }

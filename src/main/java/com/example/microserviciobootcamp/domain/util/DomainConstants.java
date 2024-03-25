@@ -7,11 +7,17 @@ public final class DomainConstants {
 
     public enum Field{
         NAME,
-        DESCRIPTION
+        DESCRIPTION,
+        TECHNOLOGY_IDS
     }
+    public static final int MAX_TECHNOLOGIES_SIZE = 20;
+    public static final int MIN_TECHNOLOGIES_SIZE = 3;
 
     public static final String TECHNOLOGY_ALREADY_EXISTS_EXCEPTION_MESSAGE = "The technology you want to create already exists";
     public static final String EMPTY_FIELD_EXCEPTION_MESSAGE = "Field %s can not be empty";
-    public static final String FIELD_EXCEEDS_CHARACTERS_EXCEPTION_MESSAGE = "Field %s exceeds limit character";
+    public static final String FIELD_EXCEEDS_CHARACTERS_EXCEPTION_MESSAGE = "Field %s exceeds the maximum limit";
     public static final String MISSING_DATA_EXCEPTION_MESSAGE = "Field %s cannot be null";
+    public static final String TECHNOLOGY_REPEATS_ITSELF_EXCEPTION_MESSAGE = "There are technologies that are repeated";
+
+    public static final String MINIMUM_DATA_FIELD_MISSING_EXCEPTION_MESSAGE = "Field %s  does not meet the minimum required";
 }

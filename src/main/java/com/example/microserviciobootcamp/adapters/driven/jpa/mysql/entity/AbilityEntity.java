@@ -8,18 +8,22 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "technology")
+@Table(name = "ability")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class TechnologyEntity {
+public class AbilityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
 
-    @ManyToMany(mappedBy = "technologies")
-    private List<AbilityEntity> abilities;
+    @ManyToMany
+    @JoinTable(
+            name = "ability_technology",
+            joinColumns = @JoinColumn(name = "ability_id"),
+            inverseJoinColumns = @JoinColumn(name = "technology_id")
+    )
+    private List<TechnologyEntity> technologies;
 }

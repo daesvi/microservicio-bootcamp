@@ -9,12 +9,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ITechnologyEntityMapper {
-
     Technology toModel(TechnologyEntity technologyEntity);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "description", target = "description")
+    @Mapping(target = "abilities", ignore = true)
     TechnologyEntity toEntity(Technology technology);
 
     List<Technology> toModelList(List<TechnologyEntity> technologyEntities);
