@@ -1,5 +1,6 @@
 package com.example.microserviciobootcamp.adapters.driving.http.mapper;
 
+import com.example.microserviciobootcamp.adapters.driving.http.dto.response.AbilityListResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.AbilityResponse;
 import com.example.microserviciobootcamp.domain.model.Ability;
 import com.example.microserviciobootcamp.domain.model.Technology;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface IAbilityResponseMapper {
     @Mapping(target = "technologyIds", source = "technologies", qualifiedByName = "mapTechnologiesToTechnologyIds")
     AbilityResponse toAbilityResponse(Ability ability);
-    List<AbilityResponse> toAbilityResponseList(List<AbilityResponse> capabilities);
+    List<AbilityListResponse> toAbilityResponseList(List<Ability> abilities);
 
     @Named("mapTechnologiesToTechnologyIds")
     default List<Long> mapTechnologiesToTechnologyIds(List<Technology> technologies) {
