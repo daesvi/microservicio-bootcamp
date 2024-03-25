@@ -12,6 +12,7 @@ import com.example.microserviciobootcamp.domain.spi.ITechnologyPersistencePort;
 import com.example.microserviciobootcamp.domain.util.DomainConstants;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class AbilityUseCase implements IAbilityServicePort {
@@ -46,5 +47,10 @@ public class AbilityUseCase implements IAbilityServicePort {
         }
 
         return abilityPersistencePort.saveAbility(ability);
+    }
+
+    @Override
+    public List<Ability> getAllAbilities(Integer page, Integer size, Boolean ascending, String orderBy) {
+        return abilityPersistencePort.getAllAbilities(page, size, ascending, orderBy);
     }
 }
