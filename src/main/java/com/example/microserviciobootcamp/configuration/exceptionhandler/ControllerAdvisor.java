@@ -1,5 +1,6 @@
 package com.example.microserviciobootcamp.configuration.exceptionhandler;
 
+import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.exception.ElementNotFoundException;
 import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.exception.NoDataFoundException;
 import com.example.microserviciobootcamp.configuration.Constants;
 import com.example.microserviciobootcamp.domain.exception.*;
@@ -43,14 +44,28 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(ElementNotFoundException.class)
-    public ResponseEntity<ExceptionResponse> handleElementNotFoundException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
-                Constants.ELEMENT_NOT_FOUND_EXCEPTION_MESSAGE, HttpStatus.CONFLICT.toString(), LocalDateTime.now()));
+    public ResponseEntity<ExceptionResponse> handleElementNotFoundException(ElementNotFoundException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                String.format(Constants.ELEMENT_NOT_FOUND_EXCEPTION_MESSAGE, exception.getMessage()),
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
     @ExceptionHandler(NoDataFoundException.class)
     public ResponseEntity<ExceptionResponse> handleNoDataFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
                 Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE, HttpStatus.NOT_FOUND.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(TechnologyRepeatsItselfException.class)
+    public ResponseEntity<ExceptionResponse> handleTechnologyRepeatsItselfException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
+                DomainConstants.TECHNOLOGY_REPEATS_ITSELF_EXCEPTION_MESSAGE, HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(MinimumDataFieldMissingException.class)
+    public ResponseEntity<ExceptionResponse> handleMinimumDataFieldMissingException(MinimumDataFieldMissingException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                String.format(DomainConstants.MINIMUM_DATA_FIELD_MISSING_EXCEPTION_MESSAGE, exception.getMessage()),
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 }

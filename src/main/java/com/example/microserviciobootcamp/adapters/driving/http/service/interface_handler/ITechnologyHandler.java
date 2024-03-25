@@ -1,4 +1,4 @@
-package com.example.microserviciobootcamp.adapters.driving.http.service;
+package com.example.microserviciobootcamp.adapters.driving.http.service.interface_handler;
 
 import com.example.microserviciobootcamp.adapters.driving.http.dto.request.AddTechnologyRequest;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.TechnologyResponse;

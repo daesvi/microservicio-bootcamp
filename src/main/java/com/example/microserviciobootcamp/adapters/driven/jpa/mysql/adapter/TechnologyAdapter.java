@@ -42,4 +42,9 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
         }
         return technologyEntityMapper.toModelList(technologies);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return technologyRepository.existsById(id);
+    }
 }
