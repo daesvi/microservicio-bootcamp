@@ -12,6 +12,7 @@ public interface IAbilityEntityMapper {
     @Mapping(target = "technologies", source = "technologies")
     Ability toModel(AbilityEntity abilityEntity);
 
+    @Mapping(target = "bootcamps", ignore = true)
     AbilityEntity toEntity(Ability ability);
 
     List<Ability> toModelList(List<AbilityEntity> abilityEntities);

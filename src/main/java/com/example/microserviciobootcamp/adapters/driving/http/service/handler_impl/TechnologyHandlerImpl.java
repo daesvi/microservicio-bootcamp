@@ -24,7 +24,7 @@ public class TechnologyHandlerImpl implements ITechnologyHandler {
 
     @Override
     public TechnologyResponse saveTechnology(AddTechnologyRequest request) {
-        validationUtils.validateFields(request.getName(), request.getDescription());
+        validationUtils.validateNameAndDescription(request.getName(), request.getDescription());
 
         Technology technology = technologyRequestMapper.addRequestToTechnology(request);
         Technology savedTechnology = technologyServicePort.saveTechnology(technology);

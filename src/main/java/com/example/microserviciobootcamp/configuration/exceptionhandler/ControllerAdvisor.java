@@ -56,10 +56,11 @@ public class ControllerAdvisor {
                 Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE, HttpStatus.NOT_FOUND.toString(), LocalDateTime.now()));
     }
 
-    @ExceptionHandler(TechnologyRepeatsItselfException.class)
-    public ResponseEntity<ExceptionResponse> handleTechnologyRepeatsItselfException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
-                DomainConstants.TECHNOLOGY_REPEATS_ITSELF_EXCEPTION_MESSAGE, HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    @ExceptionHandler(DataRepeatsItselfException.class)
+    public ResponseEntity<ExceptionResponse> handleDataRepeatsItselfException(DataRepeatsItselfException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                String.format(DomainConstants.DATA_REPEATS_ITSELF_EXCEPTION_MESSAGE, exception.getMessage()),
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
     @ExceptionHandler(MinimumDataFieldMissingException.class)

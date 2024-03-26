@@ -9,6 +9,7 @@ import com.example.microserviciobootcamp.adapters.driving.http.service.Validatio
 import com.example.microserviciobootcamp.adapters.driving.http.service.interface_handler.IAbilityHandler;
 import com.example.microserviciobootcamp.domain.api.IAbilityServicePort;
 import com.example.microserviciobootcamp.domain.model.Ability;
+import com.example.microserviciobootcamp.domain.util.DomainConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,8 @@ public class AbilityHandlerImpl  implements IAbilityHandler {
 
     @Override
     public AbilityResponse saveAbility(AddAbilityRequest request) {
-        validationUtils.validateListTechnologyIds(request.getTechnologyIds());
-        validationUtils.validateFields(request.getName(), request.getDescription());
+        validationUtils.validateNullList(request.getTechnologyIds(), DomainConstants.Field.TECHNOLOGY_IDS.toString());
+        validationUtils.validateNameAndDescription(request.getName(), request.getDescription());
 
         Ability ability = abilityRequestMapper.addRequestToAbility(request);
         Ability savedAbility = abilityServicePort.saveAbility(ability);
