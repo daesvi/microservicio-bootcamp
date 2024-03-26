@@ -9,4 +9,5 @@ public interface IAbilityPersistencePort {
     Ability saveAbility (Ability ability);
     Optional<Ability> findAbilityByName (String name);
     List<Ability> getAllAbilities(Integer page, Integer size, boolean ascending, String orderBy);
+    boolean existsById(Long id);
 }

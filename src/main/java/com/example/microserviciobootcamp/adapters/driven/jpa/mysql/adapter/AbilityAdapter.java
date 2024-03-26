@@ -51,4 +51,9 @@ public class AbilityAdapter implements IAbilityPersistencePort {
         }
         return abilityEntityMapper.toModelList(abilities);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return abilityRepository.existsById(id);
+    }
 }

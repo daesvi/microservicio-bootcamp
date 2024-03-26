@@ -11,10 +11,11 @@ import java.util.List;
 
 @Component
 public class ValidationUtils {
-    public void validateFields(String name, String description) {
+    public void validateNameAndDescription(String name, String description) {
         validateName(name);
         validateDescription(description);
     }
+
     private void validateName(String name) {
         if (name == null) {
             throw new MissingDataException(DomainConstants.Field.NAME.toString());
@@ -39,10 +40,9 @@ public class ValidationUtils {
         }
     }
 
-    public void validateListTechnologyIds(List<Long> technologyIds) {
-        if (technologyIds == null){
-            throw new MissingDataException(DomainConstants.Field.TECHNOLOGY_IDS.toString());
+    public void validateNullList(List<Long> listIds, String message) {
+        if (listIds == null){
+            throw new MissingDataException(message);
         }
     }
-
 }

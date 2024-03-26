@@ -4,7 +4,7 @@ import com.example.microserviciobootcamp.adapters.driven.jpa.mysql.exception.Ele
 import com.example.microserviciobootcamp.domain.api.IAbilityServicePort;
 import com.example.microserviciobootcamp.domain.exception.FieldExceedsCharactersException;
 import com.example.microserviciobootcamp.domain.exception.MinimumDataFieldMissingException;
-import com.example.microserviciobootcamp.domain.exception.TechnologyRepeatsItselfException;
+import com.example.microserviciobootcamp.domain.exception.DataRepeatsItselfException;
 import com.example.microserviciobootcamp.domain.model.Ability;
 import com.example.microserviciobootcamp.domain.model.Technology;
 import com.example.microserviciobootcamp.domain.spi.IAbilityPersistencePort;
@@ -27,8 +27,8 @@ public class AbilityUseCase implements IAbilityServicePort {
 
     @Override
     public Ability saveAbility(Ability ability) {
-        validateFields(ability);
         isTechnologyRepeats(ability);
+        validateFields(ability);
         doesNotTechnologyExists(ability);
 
         return abilityPersistencePort.saveAbility(ability);
@@ -47,7 +47,7 @@ public class AbilityUseCase implements IAbilityServicePort {
         Set<Long> uniqueTechnologies = new HashSet<>();
         for (Technology technology : ability.getTechnologies()) {
             if (!uniqueTechnologies.add(technology.getId())) {
-                throw new TechnologyRepeatsItselfException();
+                throw new DataRepeatsItselfException(DomainConstants.Field.TECHNOLOGY_IDS.toString());
             }
         }
     }
