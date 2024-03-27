@@ -1,5 +1,6 @@
 package com.example.microserviciobootcamp.adapters.driving.http.mapper;
 
+import com.example.microserviciobootcamp.adapters.driving.http.dto.response.BootcampListResponse;
 import com.example.microserviciobootcamp.adapters.driving.http.dto.response.BootcampResponse;
 import com.example.microserviciobootcamp.domain.model.Ability;
 import com.example.microserviciobootcamp.domain.model.Bootcamp;
@@ -20,4 +21,6 @@ public interface IBootcampResponseMapper {
                 .map(Ability::getId)
                 .toList();
     }
+
+    List<BootcampListResponse> toBootcampResponseList(List<Bootcamp> bootcamps);
 }
