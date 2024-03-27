@@ -12,6 +12,7 @@ import com.example.microserviciobootcamp.domain.spi.IBootcampPersistencePort;
 import com.example.microserviciobootcamp.domain.util.DomainConstants;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class BootcampUseCase implements IBootcampServicePort {
@@ -55,5 +56,10 @@ public class BootcampUseCase implements IBootcampServicePort {
                 throw new DataRepeatsItselfException(DomainConstants.Field.ABILITY_IDS.toString());
             }
         }
+    }
+
+    @Override
+    public List<Bootcamp> getAllBootcamps(Integer page, Integer size, Boolean ascending, String orderBy) {
+        return bootcampPersistencePort.getAllBootcamps(page, size, ascending, orderBy);
     }
 }
